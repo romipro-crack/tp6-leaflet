@@ -8,18 +8,28 @@
 </head>
 <body>
 <div id="map" style="height: 500px;"></div>
+
 <script>
   var map = L.map('map').setView([-34.6037, -58.3816], 13);
 </script>
+
+
 <script>
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; OpenStreetMap contributors'
   }).addTo(map);
 </script>
 
+
 <script>
-  var marker = L.marker([-34.6037, -58.3816]).addTo(map);
+  var marker = L.marker([-34.6037, -58.3806]).addTo(map);
+  var marker2 = L.marker([-36.6037, -58.3916]).addTo(map);
+   var marker3 = L.marker([-54.6037, -58.6816]).addTo(map);
+   var marker4 = L.marker([-70.6127, -28.6816]).addTo(map);
 </script>
+
+
+
 <script>
   var marker = L.marker([-34.6037, -58.3816]).addTo(map);
   marker.bindPopup("Hola! Soy un popup 😄");
