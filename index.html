@@ -24,7 +24,7 @@
         }).addTo(map);
     </script>
 
-
+    <!--marcador-->
     <script>
         var marker = L.marker([-34.6037, -58.3806]).addTo(map);
         var marker2 = L.marker([-36.6037, -58.3916]).addTo(map);
@@ -33,7 +33,7 @@
     </script>
 
 
-
+    <!--Popup-->
     <script>
         var marker = L.marker([-34.6037, -58.3816]).addTo(map);
         marker.bindPopup("Hola! Soy un popup 😄");
@@ -59,15 +59,24 @@
         map.on('click', onMapClick);
     </Script>
 
+    <!--Circulo/ lo arregle con chatgpt esta parte-->
     <script>
-        var circle = L.circle([-34.600291, -58.408791], {
-            color: 'red',
-            fillColor: '#f03',
-            fillOpacity: 0.5,
-            radius: 500
-        }).addTo(map);
+        let drawing = false, center, circle, done = false;
+        map.on('mousedown', e => {
+            if (done) return;
+            drawing = true;
+            center = e.latlng;
+            circle = L.circle(center, { radius: 1, color: 'red', fillColor: '#f03', fillOpacity: 0.5 }).addTo(map);
+        });
+        map.on('mousemove', e => {
+            if (drawing) circle.setRadius(center.distanceTo(e.latlng));
+        });
+        map.on('mouseup', () => {
+            drawing = false;
+            done = true;
+        });
     </script>
-
+       <!--capas-->
     <script>
         var osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
@@ -92,7 +101,7 @@
             "OpenStreetMap.HOT": osmHOT
         };
     </script>
-
+    
     <script>
         var layerControl = L.control.layers(baseMaps).addTo(map);
     </script>
@@ -132,7 +141,7 @@
 
 
 
-    <!--geolocalización -->
+    <!--geolocaliza -->
     <script>
         function onLocationFound(e) {
             var radius = e.accuracy;
