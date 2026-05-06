@@ -35,7 +35,12 @@
 <script>
   var marker = L.marker([-34.6037, -58.3816]).addTo(map);
   marker.bindPopup("Hola! Soy un popup 😄");
-
+  
+    function onMapDoubleClick(e) {
+     L.marker(e.latlng, { marker: bindPopup })
+      .addTo(map)
+      .openPopup();
+            }
 
 </script>
 
@@ -88,6 +93,39 @@ var map = L.map('map', {
 <script>
     var layerControl = L.control.layers(baseMaps).addTo(map);
 </script>
+
+
+            <!--icono-->
+            <script>
+            var customIcon = L.icon({
+            iconUrl: 'https://leafletjs.com/examples/custom-icons/leaf-green.png',
+            shadowUrl: 'https://leafletjs.com/examples/custom-icons/leaf-shadow.png',
+
+            iconSize: [38, 95],
+            shadowSize: [50, 64],
+            iconAnchor: [22, 94],
+            shadowAnchor: [4, 62],
+            popupAnchor: [-3, -76]
+            });
+            </script>
+
+            <!--click-->
+            <script>
+            function onMapDoubleClick(e) {
+            L.marker(e.latlng, { icon: customIcon })
+                .addTo(map)
+                .bindPopup("Estoy aca")
+                .openPopup();
+            }
+
+            map.on('dblclick', onMapDoubleClick);
+            </script>
+
+
+<script>
+map.doubleClickZoom.disable();
+</script>
+
 
 </body>
 </html>
