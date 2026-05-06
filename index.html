@@ -1,103 +1,106 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    
+
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
-  <title>Mapa</title>
+    <title>Mapa</title>
 </head>
+
 <body>
-<div id="map" style="height: 500px;"></div>
+    <div id="map" style="height: 500px;"></div>
 
 
-<script>
-  var map = L.map('map').setView([-34.6037, -58.3816], 13);
-</script>
+    <script>
+        var map = L.map('map').setView([-34.6037, -58.3816], 13);
+    </script>
 
 
-<script>
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; OpenStreetMap contributors'
-  }).addTo(map);
-</script>
+    <script>
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+    </script>
 
 
-<script>
-  var marker = L.marker([-34.6037, -58.3806]).addTo(map);
-  var marker2 = L.marker([-36.6037, -58.3916]).addTo(map);
-   var marker3 = L.marker([-54.6037, -58.6816]).addTo(map);
-   var marker4 = L.marker([-70.6127, -28.6816]).addTo(map);
-</script>
+    <script>
+        var marker = L.marker([-34.6037, -58.3806]).addTo(map);
+        var marker2 = L.marker([-36.6037, -58.3916]).addTo(map);
+        var marker3 = L.marker([-54.6037, -58.6816]).addTo(map);
+        var marker4 = L.marker([-70.6127, -28.6816]).addTo(map);
+    </script>
 
 
 
-<script>
-  var marker = L.marker([-34.6037, -58.3816]).addTo(map);
-  marker.bindPopup("Hola! Soy un popup 😄");
-  
-    function onMapDoubleClick(e) {
-     L.marker(e.latlng, { marker: bindPopup })
-      .addTo(map)
-      .openPopup();
-            }
+    <script>
+        var marker = L.marker([-34.6037, -58.3816]).addTo(map);
+        marker.bindPopup("Hola! Soy un popup 😄");
 
-</script>
+        function onMapDoubleClick(e) {
+            L.marker(e.latlng, { marker: bindPopup })
+                .addTo(map)
+                .openPopup();
+        }
 
-<script>
-    var popup = L.popup();
+    </script>
 
-function onMapClick(e) {
-    popup
-        .setLatLng(e.latlng)
-        .setContent("You clicked the map at " + e.latlng.toString())
-        .openOn(map);
-}
+    <script>
+        var popup = L.popup();
 
-map.on('click', onMapClick);
-</Script>
+        function onMapClick(e) {
+            popup
+                .setLatLng(e.latlng)
+                .setContent("You clicked the map at " + e.latlng.toString())
+                .openOn(map);
+        }
 
-<script>
-    var circle = L.circle([-34.600291, -58.408791], {
-    color: 'red',
-    fillColor: '#f03',
-    fillOpacity: 0.5,
-    radius: 500
-}).addTo(map);
-</script>
+        map.on('click', onMapClick);
+    </Script>
 
-<script>
-    var osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19,
-    attribution: '© OpenStreetMap'
-});
+    <script>
+        var circle = L.circle([-34.600291, -58.408791], {
+            color: 'red',
+            fillColor: '#f03',
+            fillOpacity: 0.5,
+            radius: 500
+        }).addTo(map);
+    </script>
 
-var osmHOT = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
-    maxZoom: 19,
-    attribution: '© OpenStreetMap contributors, Tiles style by Humanitarian OpenStreetMap Team hosted by OpenStreetMap France'});
+    <script>
+        var osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '© OpenStreetMap'
+        });
 
-var map = L.map('map', {
-    center: [39.73, -104.99],
-    zoom: 10,
-    layers: [osm, cities]
-});
-</script>
+        var osmHOT = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '© OpenStreetMap contributors, Tiles style by Humanitarian OpenStreetMap Team hosted by OpenStreetMap France'
+        });
 
-<script>
-    var baseMaps = {
-    "OpenStreetMap": osm,
-    "OpenStreetMap.HOT": osmHOT
-};
-</script>
+        var map = L.map('map', {
+            center: [39.73, -104.99],
+            zoom: 10,
+            layers: [osm, cities]
+        });
+    </script>
 
-<script>
-    var layerControl = L.control.layers(baseMaps).addTo(map);
-</script>
+    <script>
+        var baseMaps = {
+            "OpenStreetMap": osm,
+            "OpenStreetMap.HOT": osmHOT
+        };
+    </script>
+
+    <script>
+        var layerControl = L.control.layers(baseMaps).addTo(map);
+    </script>
 
 
-            <!--icono-->
-            <script>
-            var customIcon = L.icon({
+    <!--icono-->
+    <script>
+        var customIcon = L.icon({
             iconUrl: 'https://leafletjs.com/examples/custom-icons/leaf-green.png',
             shadowUrl: 'https://leafletjs.com/examples/custom-icons/leaf-shadow.png',
 
@@ -106,26 +109,47 @@ var map = L.map('map', {
             iconAnchor: [22, 94],
             shadowAnchor: [4, 62],
             popupAnchor: [-3, -76]
-            });
-            </script>
+        });
+    </script>
 
-            <!--click-->
-            <script>
-            function onMapDoubleClick(e) {
+    <!--click-->
+    <script>
+        function onMapDoubleClick(e) {
             L.marker(e.latlng, { icon: customIcon })
                 .addTo(map)
                 .bindPopup("Estoy aca")
                 .openPopup();
-            }
+        }
 
-            map.on('dblclick', onMapDoubleClick);
-            </script>
+        map.on('dblclick', onMapDoubleClick);
+    </script>
 
 
-<script>
-map.doubleClickZoom.disable();
-</script>
+    <script>
+        map.doubleClickZoom.disable();
+    </script>
 
+
+
+
+    <!--geolocalización -->
+    <script>
+        function onLocationFound(e) {
+            var radius = e.accuracy;
+            L.marker(e.latlng).addTo(map)
+                .bindPopup("Estás dentro de " + radius + " metros de este punto")
+                .openPopup();
+
+            L.circle(e.latlng, radius).addTo(map);
+        }
+        function onLocationError(e) {
+            alert(e.message);
+        }
+        map.on('locationfound', onLocationFound);
+        map.on('locationerror', onLocationError);
+        map.locate({ setView: true, maxZoom: 16 });
+    </script>
 
 </body>
+
 </html>
